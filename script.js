@@ -8,7 +8,7 @@ var app = new Vue({
         lastSuccessValue: 0,
         lastNum: 0,
         user: "Rouzy",
-        score: Cookies.get('score'),
+        score: Cookies.get('score') != "NaN" ? Cookies.get('score') : 1,
         minValue: 799999,
         maxValue: 200000,
         chance: 80,
