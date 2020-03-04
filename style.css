@@ -25,8 +25,7 @@
     border: 1px solid rgba(0,0,0,0.45) !important;
 }
 
-.list-price div .col {
-    margin: 0 10px;
+.list-price div .col-lg {
     cursor: pointer;
     padding: 10px;
     background-color: #3bbc73;
@@ -34,7 +33,7 @@
     border-radius: 5px;
 }
 
-.list-price div .col h2 {
+.list-price div .col-lg h2 {
     margin: 0;
 }
 
