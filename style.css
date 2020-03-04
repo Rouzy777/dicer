@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500&display=swap&subset=cyrillic');
+
+* {
+    font-family: Rubik !important;
+}
+
+.h-box-block {
+    min-height: 370px;
+}
+
+.h-special {
+    height: 43.5px !important;
+}
+
+.btn {
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.btn-special {
+    border: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+.btn-special:hover {
+    border: 1px solid rgba(0,0,0,0.45) !important;
+}
+
+.list-price div .col {
+    margin: 0 10px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #3bbc73;
+    color: white;
+    border-radius: 5px;
+}
+
+.list-price div .col h2 {
+    margin: 0;
+}
+
+.modal-header, .modal-footer {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.bshadow {
+    box-shadow: 0 0 10px rgba(28,39,60,.05);
+}
+
+.bg-success2 {
+    background: linear-gradient(to right,rgb(12,191,136),rgb(18,202,86)) 0% 0% repeat scroll rgba(0,0,0,0);
+    background-color: #3bbc73;
+}
+
+.bg-primary2 {
+    border-color: #2576ea;
+    background: linear-gradient(45deg, #1c65c9 0%, #2c80ff 100%);
+}
+
+.btn-nav {
+    letter-spacing: 0.5px;
+}
+
+.light-font {
+    color: #7987a1 !important;
+}
+
+.smallerFSize {
+    font-size: 14px !important;
+}
+
+.py-special {
+    padding: 7.5px 0 !important;
+}
+
+.bg-simplify {
+    background-color: #F5F6FA;
+}
+
+input {
+    font-size: 20px !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+input:focus, button:focus {
+    outline: none !important;
+}
+
+.input-controls {
+    margin-top: -1px;
+}
+
+.input-controls button {
+    background: transparent;
+    border: none;
+    font-size: 13px;
+}
+
+.input-controls button:nth-of-type(1) {
+    border-bottom-left-radius: 5px;
+}
+
+.input-controls button:nth-of-type(4) {
+    border-bottom-right-radius: 5px;
+}
+
+.special-round {
+    width: 42px;
+    height: 42px;
+    border-radius: 42px;
+    background-color: rgba(0,0,40,0.7);
+}
+
+.special-round h6 {
+    line-height: 42px;
+}
+
+table {
+    font-size: 13px;
+}
+
+table thead th {
+    border-bottom: 0 !important;
+    font-weight: 400;
+    font-size: 10px;
+    color: #8392a5;
+}
+
+@media screen and (max-width: 991px) {
+    .h-box-block {
+        min-height: 505px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .h-box-block {
+        min-height: 442px;
+    }
+}

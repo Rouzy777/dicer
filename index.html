@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cabura</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="odometer.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src='odometer.js'></script>
+</head>
+<body class='bg-simplify'>
+    <div id="app">
+        <nav class="navbar pb-0 sticky-top bg-white border-bottom navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand font-weight-bold" href="#">Cabura</a>
+                <div class="collapse navbar-collapse ml-4" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link smallerFSize" href="#">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link smallerFSize" href="#">Как играть</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link smallerFSize" href="#">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link smallerFSize" href="#">Рефералы</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link smallerFSize" href="#">Бонусы</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="special-round mr-2 text-center">
+                            <h6 class="text-light font-weight-bold">RO</h6>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div>
+                                <small class="text-muted">{{user}}</small>
+                            </div>
+                            <div>
+                                <h5 class='odometer'>{{score}}</h5>
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class='ml-1 mr-4'>
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                        <!--div class="btn btn-special px-3 btn-nav">
+                            <small class='light-font'>ВЫВОД</small>
+                        </div-->
+                        <div data-toggle="modal" data-target="#addMoney" class="btn bg-primary2 px-3 btn-nav">
+                            <small class='text-light'>ПОПОЛНИТЬ</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="modal fade" id="addMoney">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Пополнить</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container list-price text-center">
+                            <div class="row">
+                                <div @click='update(10)' class="col">
+                                    <h2>+10₽</h2>
+                                </div>
+                                <div @click='update(20)' class="col">
+                                    <h2>+20₽</h2>
+                                </div>
+                                <div @click='update(30)' class="col">
+                                    <h2>+30₽</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div @click='update(50)' class="col">
+                                    <h2>+50₽</h2>
+                                </div>
+                                <div @click='update(100)' class="col">
+                                    <h2>+100₽</h2>
+                                </div>
+                                <div @click='update(200)' class="col">
+                                    <h2>+200₽</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='d-lg-none d-flex w-100 border-bottom px-3 bg-white'>
+            <div class="container px-0 form-inline">
+                <div data-toggle="modal" data-target="#addMoney" class="btn bg-primary2 px-3 btn-nav smallerFSize">
+                    <small class='text-light'>ПОПОЛНИТЬ</small>
+                </div>
+                <div class="ml-2 d-flex flex-column">
+                    <div>
+                        <small class="text-muted">{{user}}</small>
+                    </div>
+                    <div>
+                        <h5 class='odometer'>{{score}}</h5>
+                    </div>
+                </div>
+                <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class='ml-1 mr-4'>
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+        </div>
+        <div class="py-lg-5 py-3 d-flex">
+            <div class="m-auto container px-lg-3 px-sm-0 px-3">
+                <div class="rounded h-box-block bshadow border px-0 py-2 mx-auto bg-white">
+                    <div class="border-bottom d-sm-block d-none py-3">
+                        <h4 class="mx-3 font-weight-normal">Dice</h4>
+                    </div>
+                    <div class='pt-4 row'>
+                        <div class="row mx-0 pl-lg-5 px-lg-0 px-sm-5 px-4 col-lg-6 col-12">
+                            <div class="col-6 px-0 pr-2">
+                                <h6 class='font-weight-normal'>Сумма:</h6>
+                                <input v-model='sum' class='col-12 p-2 border px-0 text-center' placeholder="Сумма">
+                                <div class="row input-controls mx-auto">
+                                    <button @click='sum = score' class='col-3 p-2 light-font px-0 border-left border-bottom border-right'>Max</button>
+                                    <button @click='sum = 1' class='col-3 p-2 light-font px-0 border-bottom border-right'>Min</button>
+                                    <button @click='sum = parseFloat((sum*2).toFixed(2))' class='col-3 p-2 light-font px-0 border-bottom border-right'>x2</button>
+                                    <button @click='sum = parseFloat((sum/2).toFixed(2))' class='col-3 p-2 light-font px-0 border-bottom border-right'>/2</button>
+                                </div>
+                            </div>
+                            <div class="col-6 px-0 pl-2">
+                                <h6 class='font-weight-normal'>Шанс:</h6>
+                                <input v-model='chance' class='col-12 p-2 border px-0 text-center' placeholder="Шанс">
+                                <div class="row input-controls mx-auto">
+                                    <button @click='chance = 95' class='col-3 p-2 light-font px-0 border-left border-bottom border-right'>Max</button>
+                                    <button @click='chance = 1' class='col-3 p-2 light-font px-0 border-bottom border-right'>Min</button>
+                                    <button @click='chance = parseFloat((chance*2).toFixed(2))' class='col-3 p-2 light-font px-0 border-bottom border-right'>x2</button>
+                                    <button @click='chance = parseFloat((chance/2).toFixed(2)); chance' class='col-3 p-2 light-font px-0 border-bottom border-right'>/2</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 px-sm-5 px-4 text-center col-12">
+                            <h1 class='display-4 mt-lg-0 mt-4 font-weight-normal mb-0'>{{ successValue }}</h1>
+                            <small class="text-muted font-weight-light">Возможный выигрыш</small>
+                            <div class="col-12 mt-3 px-0 mx-auto row">
+                                <div class="col-6 px-0 pr-2">
+                                    <small class='text-muted font-weight-light'>0 - {{minValue}}</small>
+                                    <button @click='playSmaller' class='btn smallerFSize font-weight-light mt-2 btn-secondary col-12 py-2'>Меньше</button>
+                                </div>
+                                <div class="col-6 px-0 pl-2">
+                                    <small class='text-muted font-weight-light'>{{maxValue}} - 999999</small>
+                                    <button @click='playBigger' class='btn smallerFSize font-weight-light mt-2 btn-secondary col-12 py-2'>Больше</button>
+                                </div>
+                            </div>
+                            <div v-show='success' class="bg-success2 py-special rounded justify-content-center mt-3 mx-auto">
+                                <h6 class='text-light py-1 smallerFSize font-weight-light mb-0'>Выиграли {{ lastSuccessValue }}</h6>
+                            </div>
+                            <div v-show='fail' class="bg-danger py-special rounded justify-content-center mt-3 mx-auto">
+                                <h6 class='text-light py-1 smallerFSize font-weight-light mb-0'>Выпало {{ lastNum }}</h6>
+                            </div>
+                            <div v-show='money' class="bg-danger py-special rounded justify-content-center mt-3 mx-auto">
+                                <h6 class='text-light py-1 smallerFSize font-weight-light mb-0'>Недостаточно средств</h6>
+                            </div>
+                            <div v-show='oneruble' class="bg-danger py-special rounded justify-content-center mt-3 mx-auto">
+                                <h6 class='text-light py-1 smallerFSize font-weight-light mb-0'>Ставки от 1 рубля</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-md-block d-none rounded bshadow border mt-3 px-0 py-2 mx-auto bg-white">
+                    <h6 class='mx-3 pt-2 pb-3 smallerFSize'>История</h6>
+                    <table class="table mb-0 text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">ИГРА</th>
+                                <th scope="col">ЛОГИН</th>
+                                <th scope="col">СУММА</th>
+                                <th scope="col">КОЭФФИЦИЕНТ</th>
+                                <th scope="col">РЕЗУЛЬТАТ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr class='h-special' v-for="item in lastGames">
+                            <th scope="row">
+                                <svg v-show="item.show" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"></path>
+                                    <polyline points="2.32 6.16 12 11 21.68 6.16"></polyline>
+                                    <line x1="12" y1="22.76" x2="12" y2="11"></line>
+                                </svg>
+                            </th>
+                            <td>{{item.user}}</td>
+                            <td>{{item.sum}}</td>
+                            <td>{{item.coef}}</td>
+                            <td v-bind:style="{ color: item.color }">{{item.result}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src='script.js'></script>
+</body>
+</html>
