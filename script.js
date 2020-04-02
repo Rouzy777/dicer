@@ -4,25 +4,25 @@ function getRandomArbitrary(min, max) { //генерация числа для �
 var app = new Vue({
     el: '#app',
     data: {
-        successValue: 1.25,
-        lastSuccessValue: 0,
-        lastNum: 0,
-        user: "Rouzy",
-        score: Cookies.get('score') != "NaN" ? Cookies.get('score') : 1,
-        minValue: 799999,
-        maxValue: 200000,
-        chance: 80,
-        sum: 1,
-        success: false,
-        fail: false,
-        money: false,
-        oneruble: false,
+        successValue: 1.25, //шанс выигрыша
+        lastSuccessValue: 0, //последний выигрыш
+        lastNum: 0, //последнее выпавшее число
+        user: "Rouzy", //никнейм
+        score: Cookies.get('score') != "NaN" ? Cookies.get('score') : 1, //генерация начального счета
+        minValue: 799999, //мин. разброс генерации числа в инпуте
+        maxValue: 200000, //макс. разброс генерации числа в инпуте
+        chance: 80, //начальный шанс в инпуте
+        sum: 1, //начальная сумма в инпуте
+        success: false, //уведомление о победе
+        fail: false, //уведомление о проигрыше
+        money: false, //предупреждение о нехватке средств
+        oneruble: false, //предупреждение ставок от 1 рубля
         lastGames: [
             {},{},{},{},{},{},{},{},{},{},{},{},{},{}
         ]
     },
     watch: {
-        chance: function() {
+        chance: function() { //генерация шанса и валидаторы
             this.successValue = (this.sum * 100 / this.chance).toFixed(2);
             this.minValue = this.chance != "" ? (this.chance * 10000 - 1).toFixed(0) : 0;
             this.maxValue = this.chance != "" ? (999999 - (this.chance * 10000 - 1)).toFixed(0) : 999999;
@@ -36,7 +36,7 @@ var app = new Vue({
                 }
             }
         },
-        sum: function() {
+        sum: function() { //генерация суммы выигрыша и валидаторы
             this.successValue = (this.sum * 100 / this.chance).toFixed(2);
             this.sum > 1000000 ? this.sum = 1000000 : true;
             if(this.sum.length != 0) {
@@ -50,7 +50,7 @@ var app = new Vue({
         }
     },
     methods: {
-        playSmaller: function() {
+        playSmaller: function() { //игра "меньше"
             this.oneruble = false;
             this.money = false;
             this.fail = false;
@@ -99,7 +99,7 @@ var app = new Vue({
                 this.money = true;
             }
         },
-        playBigger: function() {
+        playBigger: function() { //игра "больше"
             this.oneruble = false;
             this.money = false;
             this.fail = false;
@@ -148,7 +148,7 @@ var app = new Vue({
                 this.money = true;
             }
         },
-        update: function(num) {
+        update: function(num) { //пополнение счета
             this.score = Number(num) + Number(this.score);
             od.update(this.score);
             od2.update(this.score);
@@ -156,14 +156,14 @@ var app = new Vue({
         }
     }
 });
-window.OdometerOptions = {
+window.OdometerOptions = { //настройки одометра (счета)
     duration: 1000
 }
-od = new Odometer({
+od = new Odometer({ //генерация одометра на пк
     el: document.querySelectorAll('.odometer')[0],
     value: app.score
 });
-od2 = new Odometer({
+od2 = new Odometer({ //генерация одометра на моб. версиях
     el: document.querySelectorAll('.odometer')[1],
     value: app.score
 });
