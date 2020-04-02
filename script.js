@@ -1,4 +1,4 @@
-function getRandomArbitrary(min, max) {
+function getRandomArbitrary(min, max) { //генерация числа для игры
     return Math.random() * (max - min) + min;
 }
 var app = new Vue({
@@ -31,7 +31,6 @@ var app = new Vue({
                 let arr = this.chance.split('.');
                 if(arr[1] != undefined) {
                     if(arr[1].length > 2) {
-                        console.log(arr[0]+'.'+arr[1].substr(0,2));
                         this.chance = arr[0]+'.'+arr[1].substr(0,2);
                     }
                 }
@@ -44,7 +43,6 @@ var app = new Vue({
                 let arr = this.sum.split('.');
                 if(arr[1] != undefined) {
                     if(arr[1].length > 2) {
-                        console.log(arr[0]+'.'+arr[1].substr(0,2));
                         this.sum = arr[0]+'.'+arr[1].substr(0,2);
                     }
                 }
